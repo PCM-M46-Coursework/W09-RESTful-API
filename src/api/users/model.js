@@ -9,28 +9,24 @@ const User = context.define(
 	{
 		username: {
 			type: DataTypes.STRING,
+			allowNull: false,
+			unique: true,
 		},
 		email: {
 			type: DataTypes.STRING,
+			allowNull: false,
+			unique: true,
 		},
 		password: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 	},
 	{
-		// This shows a different way to determine unique fields.
-		// However, it can be better to define the properties of the
-		// fields within the field definition, above.
-		indexes: [
-			{
-				allowNull: false,
-				fields: ["username", "email", "password"],
-			},
-			{
-				unique: true,
-				fields: ["username", "email"],
-			},
-		],
+		// IMPORTANT: the `User.validate()` method DOES NOT respect the
+		// constraints set within this indexes array. To allow for model
+		// validation, the constraints MUST be added above.
+		indexes: [],
 	},
 );
 
