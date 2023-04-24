@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	/**
-	 * Get a single user from the database.
+	 * Get a single user from the database, by the user's id.
 	 *
 	 * @param {object} req - Express request object
 	 * @param {object} res - Express response object

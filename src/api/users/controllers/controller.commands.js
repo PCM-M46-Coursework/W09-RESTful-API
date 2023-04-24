@@ -82,11 +82,11 @@ module.exports = {
 	},
 
 	/**
-	 * Update a model within the database. Partial updates are allowed.
+	 * Update a user within the database. Partial updates are allowed.
 	 *
-	 * @param {String} id.path.required - The model's ID.
-	 * @param {User.model} model.body.required - The updated model.
-	 * @returns {UserResponse.model} 200 - The updated user.
+	 * @param {String} id.path.required - The user's ID.
+	 * @param {User.model} model.body.required - The updated user details.
+	 * @returns {UserResponse.model} 200 - The updated user response object.
 	 * @returns {Error} 500 - Internal server error.
 	 */
 	patchUser: async (req, res) => {
@@ -112,7 +112,7 @@ module.exports = {
 	 * @returns {Void} 204 - No Content.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	deleteSingle: async (req, res) => {
+	deleteUser: async (req, res) => {
 		try {
 			let user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
