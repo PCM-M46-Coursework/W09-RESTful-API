@@ -18,7 +18,7 @@ router
 // ===================================================================================
 
 router
-	.get("/", queries.getMany)
+	.get("/", queries.getAllUsers)
 	.get("/:id", queries.getUserById)
 	.get("/:username", queries.getUserByUsername);
 

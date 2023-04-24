@@ -16,7 +16,7 @@ module.exports = {
 	 * @returns {object} 200 - A JSON object with all users.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	getMany: async (_, res) => {
+	getAllUsers: async (_, res) => {
 		try {
 			const users = await User.findAll();
 			res.status(200).json({ message: "OK", data: users });
