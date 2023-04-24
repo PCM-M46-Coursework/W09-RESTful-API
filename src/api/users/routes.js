@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const hashPass = require("../../db/middleware/hashPass");
 const { commands, queries } = require("./controllers");
 const router = Router();
 
@@ -7,7 +8,7 @@ const router = Router();
 // ===================================================================================
 
 router
-	.post("/", commands.registerUser)
+	.post("/", hashPass, commands.registerUser)
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
