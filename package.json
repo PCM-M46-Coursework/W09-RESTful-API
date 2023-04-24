@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API/issues"
   },
-  "homepage": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API#readme"
+  "homepage": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
