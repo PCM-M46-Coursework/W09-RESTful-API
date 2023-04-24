@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
-
-const hashPass = async (req, res, next) => {
+module.exports = async (req, res, next) => {
 	try {
 		req.body.password = await bcrypt.hash(req.body.password, 12);
 		next();
@@ -11,5 +10,3 @@ const hashPass = async (req, res, next) => {
 		});
 	}
 };
-
-module.exports = hashPass;
