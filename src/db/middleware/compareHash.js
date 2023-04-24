@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 
 module.exports = async (req, res, next) => {
 	const { username, password } = req.body;
+
+	// Return early if username or password is not within the request body.
 	if (!username || !password) {
 		return res
 			.status(400)
