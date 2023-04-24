@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { commands, queries } = require("./controllers");
+const { hashPassword, compareHash } = require("../../db/middleware");
 const router = Router();
 
 // ===================================================================================
@@ -7,7 +8,8 @@ const router = Router();
 // ===================================================================================
 
 router
-	.post("/", commands.registerUser)
+	.post("/", hashPassword, commands.registerUser)
+	.post("/login", compareHash, commands.loginUser)
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
@@ -18,7 +20,7 @@ router
 // ===================================================================================
 
 router
-	.get("/", queries.getMany)
+	.get("/", queries.getAllUsers)
 	.get("/:id", queries.getUserById)
 	.get("/:username", queries.getUserByUsername);
 

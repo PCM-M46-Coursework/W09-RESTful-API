@@ -27,6 +27,33 @@ module.exports = {
 	},
 
 	/**
+	 * Authenticates a user, with the provided credentials.
+	 * Authentication handled by {@link compareHash} middleware.
+	 *
+	 * @param {User.model} req.body.required - The user credentials.
+	 * @param {Object} res.body.required - The response object.
+	 * @returns {AuthenticatedUserResponse.model} 200 - The authenticated user model.
+	 * @returns {Error} 500 - Internal server error.
+	 */
+	loginUser: async (req, res) => {
+		try {
+			const { username, email } = req.body.user;
+			res.status(200).json({
+				message: `success`,
+				user: {
+					username,
+					email,
+				},
+			});
+		} catch (error) {
+			res.status(500).json({
+				message: error.message,
+				error,
+			});
+		}
+	},
+
+	/**
 	 * Update a user within the database. All fields are required for update.
 	 *
 	 * @param {String} id.path.required - The user's ID.
