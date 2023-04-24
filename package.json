@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sequelize": "^6.31.0"
   }
 }
