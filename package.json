@@ -1,0 +1,28 @@
+{
+  "name": "w09-restful-api",
+  "version": "1.0.0",
+  "description": "Week 9 Coursework Submission - RESTful APIs",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PCM-M46-CodeNation/W09-RESTful-API.git"
+  },
+  "keywords": [
+    "codenation",
+    "coursework",
+    "REST",
+    "API",
+    "javascript",
+    "sequelize",
+    "express"
+  ],
+  "author": "Peter C. Matthews",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API/issues"
+  },
+  "homepage": "https://github.com/PCM-M46-CodeNation/W09-RESTful-API#readme"
+}
