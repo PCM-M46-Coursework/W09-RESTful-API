@@ -1,12 +1,5 @@
 const User = require("../model");
 
-const filterParams = function (params) {
-	return {
-		...(params.id && { id: params.id }),
-		...(params.username && { username: params.username }),
-	};
-};
-
 module.exports = {
 	/**
 	 * Get all users within the database.
