@@ -32,5 +32,8 @@
 		"express": "^4.18.2",
 		"mysql2": "^3.2.3",
 		"sequelize": "^6.31.0"
+	},
+	"devDependencies": {
+		"supertest": "^6.3.3"
 	}
 }
