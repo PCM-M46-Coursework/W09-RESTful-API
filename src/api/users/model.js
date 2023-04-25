@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { context } = require("../../db/connection");
-const validatePassword = require("./validators/passwordValidator");
+const validateHash = require("./validators/hashValidator");
 const validateEmail = require("./validators/emailValidator");
 
 /**
@@ -11,7 +11,10 @@ const User = context.define(
 	{
 		username: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: {
+				args: false,
+				msg: "Username is a required field.",
+			},
 			unique: {
 				args: true,
 				msg: "Username already exists.",
@@ -23,7 +26,10 @@ const User = context.define(
 		},
 		email: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: {
+				args: false,
+				msg: "Email is a required field.",
+			},
 			unique: {
 				args: true,
 				msg: "Email already exists.",
@@ -39,14 +45,15 @@ const User = context.define(
 		},
 		password: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: {
+				args: false,
+				msg: "Password is a required field.",
+			},
 			validate: {
 				notEmpty: true,
-				isStrongPassword(value) {
-					if (!validatePassword(value)) {
-						throw new Error(
-							"Password does not meet strength requirements.",
-						);
+				isBCryptHash(value) {
+					if (!validateHash(value)) {
+						throw new Error("Plaintext password are not allowed.");
 					}
 				},
 			},
