@@ -2,6 +2,12 @@ const User = require("../../api/users/model");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res, next) => {
+	// Early return if user is already authenticated, and authorised, via JSON web token.
+	if (req.user?.token != null) {
+		next();
+		return;
+	}
+
 	const { username, password } = req.body;
 
 	// Return early if username or password is not within the request body.
@@ -33,7 +39,7 @@ module.exports = async (req, res, next) => {
 		}
 
 		// Attach the user object to the request and call the controller.
-		req.body.user = user;
+		req.user = user;
 		next();
 	} catch (error) {
 		res.status(500).json({

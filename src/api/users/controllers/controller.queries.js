@@ -43,20 +43,25 @@ module.exports = {
 	},
 
 	/**
-	 * Get a single user from the database.
+	 * Authorises an authenticated user, with the provided token.
+	 * Authorisation handled by {@link tokenCheck} middleware.
 	 *
-	 * @param {object} req - Express request object
-	 * @param {object} res - Express response object
-	 * @returns {object} 200 - A JSON object with the requested user.
+	 * @param {User.model} req - The request object.
+	 * @param {Object} res - The response object.
+	 * @returns {AuthenticatedUserResponse.model} 200 - The authenticated user model.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	getUserByUsername: async (req, res) => {
+	authCheck: async (req, res) => {
 		try {
-			const user = await User.findOne({
-				where: { username: req.params.username },
+			const { username, email, token } = req.user;
+			res.status(200).json({
+				message: "success",
+				user: {
+					username,
+					email,
+					token,
+				},
 			});
-			if (!user) throw new Error("User not found.");
-			res.status(200).json({ message: "OK", data: user });
 		} catch (error) {
 			res.status(500).json({
 				message: error.message,

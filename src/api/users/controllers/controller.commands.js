@@ -1,4 +1,5 @@
 const User = require("../model");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
 	/**
@@ -29,6 +30,7 @@ module.exports = {
 	/**
 	 * Authenticates a user, with the provided credentials.
 	 * Authentication handled by {@link comparePass} middleware.
+	 * Authorisation handled by {@link tokenCheck} middleware.
 	 *
 	 * @param {User.model} req.body.required - The user credentials.
 	 * @param {Object} res.body.required - The response object.
@@ -37,12 +39,20 @@ module.exports = {
 	 */
 	loginUser: async (req, res) => {
 		try {
-			const { username, email } = req.body.user;
+			if (req.user?.token == null) {
+				req.user.token = jwt.sign(
+					{ id: req.user.id },
+					process.env.JWT_SECRET,
+				);
+			}
+
+			const { username, email, token } = req.user;
 			res.status(200).json({
 				message: `success`,
 				user: {
 					username,
 					email,
+					token,
 				},
 			});
 		} catch (error) {

@@ -18,4 +18,9 @@ module.exports = {
 	 * Validates an email address, using the HTML5 email validation rules.
 	 */
 	validateEmail: require("./validateEmail"),
+
+	/**
+	 * Authorise a user, with a JWT Token.
+	 */
+	tokenCheck: require("./tokenCheck"),
 };

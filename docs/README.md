@@ -22,7 +22,6 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 | ---- | ---- | ------ | ----- | ---------- | ------------------- |
 | &#9745; | Create a new user within the database. | POST | /users/register | hashPass | registerUser |
 | &#9745; | Authenticate a user, with the provided credentials. | POST | /users/login | comparePass | loginUser |
-| &#9744; | Authorise a user, with the provided token. | POST | /users/authcheck | tokenCheck | authoriseUser |
 | &#9745; | Update a user within the database. All fields are required for update.| PUT | /users/:id | - | updateUser |
 | &#9745; | Update a user within the database. Partial updates are allowed. | PATCH | /users/:id | - | patchUser |
 | &#9744; | Change an authenticated user's password. | PATCH | /users/change-password | tokenCheck, comparePass | changePasswordForUser |
@@ -30,6 +29,7 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 | &#9745; | Truncate the Users table within the database. USE WITH CAUTION! | DELETE | /users | - | deleteAllUsers |
 | &#9745; | Get all users within the database. | GET | /users | - | getAllUsers |
 | &#9745; | Get a single user from the database, by the user's id. | GET | /users/:id | - | getUserById |
+| &#9745; | Authorise a user, with the provided token. | GET | /users/authcheck | tokenCheck | authoriseUser |
 
 ### Stretch Goals:
  - [ ] Create a second model for data storage, must be in some way linked to the user database entries.
@@ -43,6 +43,7 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 
 ### Personal Stretch Goals:
  - [ ] Implement a password reset functionality in case a user forgets their password.
+ - [x] Implement persistent login, where authorised users are automatically authenticated.
  - [x] Add email validation for registering users
  - [x] Add password validation for registering users
  - [x] Add validation for input fields to ensure they are of the correct type and length before they are processed.
