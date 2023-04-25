@@ -12,13 +12,24 @@ const User = context.define(
 		username: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: true,
+			unique: {
+				args: true,
+				msg: "Username already exists.",
+			},
+			validate: {
+				notEmpty: true,
+				len: [4, 30],
+			},
 		},
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: true,
+			unique: {
+				args: true,
+				msg: "Email already exists.",
+			},
 			validate: {
+				notEmpty: true,
 				isValidEmail(value) {
 					if (!validateEmail(value)) {
 						throw new Error("Invalid email address.");
@@ -30,6 +41,7 @@ const User = context.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
+				notEmpty: true,
 				isStrongPassword(value) {
 					if (!validatePassword(value)) {
 						throw new Error(
