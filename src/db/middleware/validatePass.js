@@ -2,7 +2,7 @@ const isValid = require("../../api/users/validators/passwordValidator");
 
 module.exports = async (req, res, next) => {
 	const password = req.body.password;
-	if (!email) {
+	if (!password) {
 		return res
 			.status(422)
 			.json({ message: "Password is a required field." });
