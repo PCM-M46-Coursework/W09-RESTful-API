@@ -23,4 +23,9 @@ module.exports = {
 	 * Authorise a user, with a JWT Token.
 	 */
 	tokenCheck: require("./tokenCheck"),
+
+	/**
+	 * Validates, and hashes a new password for a user.
+	 */
+	changePass: require("./changePass"),
 };
