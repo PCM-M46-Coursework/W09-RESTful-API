@@ -21,7 +21,7 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 | Done | Task | Method | Route | Middleware | Controller Function |
 | ---- | ---- | ------ | ----- | ---------- | ------------------- |
 | &#9745; | Create a new user within the database. | POST | /users/register | hashPass | registerUser |
-| &#9744; | Authenticate a user, with the provided credentials. | POST | /users/login | comparePass | loginUser |
+| &#9745; | Authenticate a user, with the provided credentials. | POST | /users/login | comparePass | loginUser |
 | &#9744; | Authorise a user, with the provided token. | POST | /users/authcheck | tokenCheck | authoriseUser |
 | &#9745; | Update a user within the database. All fields are required for update.| PUT | /users/:id | - | updateUser |
 | &#9745; | Update a user within the database. Partial updates are allowed. | PATCH | /users/:id | - | patchUser |
