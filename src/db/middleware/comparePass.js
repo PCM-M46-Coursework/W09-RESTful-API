@@ -1,9 +1,13 @@
 const User = require("../../api/users/model");
 const bcrypt = require("bcrypt");
+const debug = require("../../diagnostics/debug");
 
 module.exports = async (req, res, next) => {
+	debug.traceRoute(req, "Entering comparePass Middleware");
+
 	// Early return if user is already authenticated, and authorised, via JSON web token.
 	if (req.user?.token != null) {
+		debug.traceRoute(req, "Leaving comparePass Middleware");
 		next();
 		return;
 	}
@@ -40,6 +44,7 @@ module.exports = async (req, res, next) => {
 
 		// Attach the user object to the request and call the controller.
 		req.user = user;
+		debug.traceRoute(req, "Leaving comparePass Middleware");
 		next();
 	} catch (error) {
 		res.status(500).json({

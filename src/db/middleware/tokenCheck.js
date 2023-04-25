@@ -1,8 +1,11 @@
 const jwt = require("jsonwebtoken");
 const User = require("../../api/users/model");
+const debug = require("../../diagnostics/debug");
 
 module.exports = async (req, res, next) => {
 	try {
+		debug.traceRoute(req, "Entering tokenCheck Middleware");
+
 		// Retrieve the token from the Authorization header.
 		const token = req.headers?.authorization?.split(" ")[1];
 
@@ -33,6 +36,7 @@ module.exports = async (req, res, next) => {
 
 		// Call the next middleware function in the chain.
 		req.user.token = token;
+		debug.traceRoute(req, "Leaving tokenCheck Middleware");
 		next();
 	} catch (error) {
 		// For debugging purposes, I'm adding the error in the response.
