@@ -12,24 +12,24 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 
 ### Requirements:
 
- - [ ] A User model with:
+ - [x] A User model with:
     - [x] relevant CRUD routes and controllers.
-    - [ ] relevant API routes and controllers.
- - [ ] All routes must be tested in Thunder Client.
+    - [x] relevant API routes and controllers.
+ - [x] All routes must be tested in Thunder Client.
 
 **User CRUD/API Routes:**
-| Done | Task | Method | Route | Middleware | Controller Function |
-| ---- | ---- | ------ | ----- | ---------- | ------------------- |
-| &#9745; | Create a new user within the database. | POST | /users/register | hashPass | registerUser |
-| &#9745; | Authenticate a user, with the provided credentials. | POST | /users/login | comparePass | loginUser |
-| &#9745; | Update a user within the database. All fields are required for update.| PUT | /users/:id | - | updateUser |
-| &#9745; | Update a user within the database. Partial updates are allowed. | PATCH | /users/:id | - | patchUser |
-| &#9744; | Change an authenticated user's password. | PATCH | /users/change-password | tokenCheck, comparePass | changePasswordForUser |
-| &#9745; | Delete a user from the database. | DELETE | /users/:id | - | deleteUser |
-| &#9745; | Truncate the Users table within the database. USE WITH CAUTION! | DELETE | /users | - | deleteAllUsers |
-| &#9745; | Get all users within the database. | GET | /users | - | getAllUsers |
-| &#9745; | Get a single user from the database, by the user's id. | GET | /users/:id | - | getUserById |
-| &#9745; | Authorise a user, with the provided token. | GET | /users/authcheck | tokenCheck | authoriseUser |
+| Task | Method | Route | Middleware | Controller Function |
+| ---- | ------ | ----- | ---------- | ------------------- |
+| Create a new user within the database. | POST | /users/register | hashPass | registerUser |
+| Authenticate a user, with the provided credentials. | POST | /users/login | comparePass | loginUser |
+| Update a user within the database. All fields are required for update.| PUT | /users/:id | - | updateUser |
+| Update a user within the database. Partial updates are allowed. | PATCH | /users/:id | - | patchUser |
+| Change an authenticated user's password. | PATCH | /users/change-password | tokenCheck, comparePass | changePassword |
+| Delete a user from the database. | DELETE | /users/:id | - | deleteUser |
+| Truncate the Users table within the database. USE WITH CAUTION! | DELETE | /users | - | deleteAllUsers |
+| Get all users within the database. | GET | /users | - | getAllUsers |
+| Get a single user from the database, by the user's id. | GET | /users/:id | - | getUserById |
+| Authorise a user, with the provided token. | GET | /users/authcheck | tokenCheck | authoriseUser |
 
 ### Stretch Goals:
  - [ ] Create a second model for data storage, must be in some way linked to the user database entries.
@@ -42,7 +42,7 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
     - [ ] GET a specific task for the authenticated user.
 
 ### Personal Stretch Goals:
- - [ ] Implement a route for authenticated, and authorised users to change their passwords.
+ - [x] Implement a route for authenticated, and authorised users to change their passwords.
  - [x] Implement persistent login, where authorised users are automatically authenticated.
  - [x] Add email validation for registering users
  - [x] Add password validation for registering users
