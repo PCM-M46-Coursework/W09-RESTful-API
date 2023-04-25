@@ -6,14 +6,22 @@ module.exports = async (req, res, next) => {
 		// Retrieve the token from the Authorization header.
 		const token = req.headers?.authorization?.split(" ")[1];
 
-		// Return early if token not present.
-		if (token == null) throw new Error("Unauthorised 1");
+		if (token == null) {
+			// Send request onwards if used is not authenticated.
+			if (req.body.username != null && req.body.password != null) {
+				next();
+				return;
+			}
+
+			// Throw error if token not present.
+			throw new Error();
+		}
 
 		// Decode the token using the secret key
 		const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
 		// If the token is invalid, return a 401 Unauthorised error.
-		if (decodedToken == null) throw new Error("Unauthorised 2");
+		if (decodedToken == null) throw new Error();
 
 		// Retrieve the user associated with the token from the database.
 		if (req.user?.id != decodedToken.id) {
@@ -21,12 +29,13 @@ module.exports = async (req, res, next) => {
 		}
 
 		// If the user is not found, return a 401 Unauthorised error.
-		if (!req.user) throw new Error("Unauthorised 3");
+		if (!req.user) throw new Error();
 
 		// Call the next middleware function in the chain.
 		req.user.token = token;
 		next();
 	} catch (error) {
-		res.status(401).json({ message: error.message });
+		// For debugging purposes, I'm adding the error in the response.
+		res.status(401).json({ message: "Unauthorised", error });
 	}
 };

@@ -14,7 +14,7 @@ router
 		middleware.hashPass,
 		commands.registerUser,
 	)
-	.post("/login", middleware.comparePass, commands.loginUser)
+	.post("/login", middleware.tokenCheck, middleware.comparePass, commands.loginUser)
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)

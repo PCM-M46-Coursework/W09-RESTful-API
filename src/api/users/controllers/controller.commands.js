@@ -38,13 +38,14 @@ module.exports = {
 	 */
 	loginUser: async (req, res) => {
 		try {
-			const token = await jwt.sign(
-				{ id: req.user.id },
-				process.env.JWT_SECRET,
-			);
+			if (req.user?.token == null) {
+				req.user.token = jwt.sign(
+					{ id: req.user.id },
+					process.env.JWT_SECRET,
+				);
+			}
 
-			const { username, email } = req.user;
-
+			const { username, email, token } = req.user;
 			res.status(200).json({
 				message: `success`,
 				user: {
