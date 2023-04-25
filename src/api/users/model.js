@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { context } = require("../../db/connection");
 const validatePassword = require("./validators/passwordValidator");
+const validateEmail = require("./validators/emailValidator");
 
 /**
  * Defines schema for a record, within the Users table, in the database.
@@ -17,6 +18,13 @@ const User = context.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 			unique: true,
+			validate: {
+				isValidEmail(value) {
+					if (!validateEmail(value)) {
+						throw new Error("Invalid email address.");
+					}
+				},
+			},
 		},
 		password: {
 			type: DataTypes.STRING,
