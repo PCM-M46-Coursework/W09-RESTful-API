@@ -8,13 +8,19 @@ const router = Router();
 // ===================================================================================
 
 router
-	.post("/register",
+	.post(
+		"/register",
 		middleware.validateEmail,
 		middleware.validatePass,
 		middleware.hashPass,
 		commands.registerUser,
 	)
-	.post("/login", middleware.tokenCheck, middleware.comparePass, commands.loginUser)
+	.post(
+		"/login",
+		middleware.tokenCheck,
+		middleware.comparePass,
+		commands.loginUser,
+	)
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
@@ -25,7 +31,8 @@ router
 // ===================================================================================
 
 router
-    .get("/", queries.getAllUsers)
-    .get("/:id", queries.getUserById);
+	.get("/", queries.getAllUsers)
+	.get("/authcheck", middleware.tokenCheck, queries.authCheck)
+	.get("/:id", queries.getUserById);
 
 module.exports = router;
