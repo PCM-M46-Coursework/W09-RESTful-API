@@ -12,7 +12,7 @@ module.exports = {
 		try {
 			const { username, email } = await User.create(req.body);
 			res.status(201).json({
-				message: `Successfully created user.`,
+				message: "success",
 				user: {
 					username,
 					email,
