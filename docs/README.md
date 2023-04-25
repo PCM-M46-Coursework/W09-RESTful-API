@@ -42,7 +42,7 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
     - [ ] GET a specific task for the authenticated user.
 
 ### Personal Stretch Goals:
- - [ ] Implement a password reset functionality in case a user forgets their password.
+ - [ ] Implement a route for authenticated, and authorised users to change their passwords.
  - [x] Implement persistent login, where authorised users are automatically authenticated.
  - [x] Add email validation for registering users
  - [x] Add password validation for registering users
