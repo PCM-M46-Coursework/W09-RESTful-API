@@ -18,7 +18,7 @@ router
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
-	.delete("/:id", commands.deleteSingle);
+	.delete("/:id", commands.deleteUser);
 
 // ===================================================================================
 //  QUERIES
