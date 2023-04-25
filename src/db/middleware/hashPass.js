@@ -1,7 +1,8 @@
-const bcrypt = require("bcrypt");
+const { hash } = require("../../cryptography/passwordHasher");
+
 module.exports = async (req, res, next) => {
 	try {
-		req.body.password = await bcrypt.hash(req.body.password, 12);
+		req.body.password = await hash(req.body.password);
 		next();
 	} catch (error) {
 		res.status(501).json({
