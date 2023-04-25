@@ -22,6 +22,13 @@ router
 		commands.loginUser,
 	)
 	.put("/:id", commands.updateUser)
+	.patch(
+		"/change-password",
+		middleware.comparePass,
+		middleware.tokenCheck,
+		middleware.changePass,
+		commands.changePassword,
+	)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
 	.delete("/:id", commands.deleteUser);
