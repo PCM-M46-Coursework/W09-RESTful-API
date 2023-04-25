@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { commands, queries } = require("./controllers");
-const { hashPass, comparePass } = require("../../db/middleware");
+const middleware = require("../../db/middleware");
 const router = Router();
 
 // ===================================================================================
@@ -8,12 +8,17 @@ const router = Router();
 // ===================================================================================
 
 router
-	.post("/register", hashPass, commands.registerUser)
-	.post("/login", comparePass, commands.loginUser)
+	.post("/register",
+		middleware.validateEmail,
+		middleware.validatePass,
+		middleware.hashPass,
+		commands.registerUser,
+	)
+	.post("/login", middleware.comparePass, commands.loginUser)
 	.put("/:id", commands.updateUser)
 	.patch("/:id", commands.patchUser)
 	.delete("/", commands.deleteAllUsers)
-	.delete("/:id", commands.deleteSingle);
+	.delete("/:id", commands.deleteUser);
 
 // ===================================================================================
 //  QUERIES
