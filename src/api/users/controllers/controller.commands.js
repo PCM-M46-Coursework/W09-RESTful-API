@@ -116,6 +116,33 @@ module.exports = {
 	},
 
 	/**
+	 * Change an authenticated user's password.
+	 * Authentication handled by {@link comparePass} middleware.
+	 * Authorisation handled by {@link tokenCheck} middleware.
+	 * Validation handled by {@link changePass} middleware.
+	 *
+	 * @param {Object} req - The request object.
+	 * @param {Object} res - The response object.
+	 * @returns {Void} 200 - Success.
+	 * @returns {Error} 500 - Internal server error.
+	 */
+	changePassword: async function (req, res) {
+		try {
+			const user = await User.findByPk(req.user.id);
+			if (!user) throw new Error("Pipeline error.");
+			var token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET);
+			user.set(req.body);
+			await user.save();
+			res.status(200).json({ message: "success", token });
+		} catch (error) {
+			res.status(500).json({
+				message: error.message,
+				error,
+			});
+		}
+	},
+
+	/**
 	 * Delete a user from the database.
 	 *
 	 * @param {String} id.path.required - The model's ID.
