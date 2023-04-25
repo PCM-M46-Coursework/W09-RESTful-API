@@ -1,4 +1,5 @@
 const User = require("../model");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
 	/**
@@ -37,12 +38,19 @@ module.exports = {
 	 */
 	loginUser: async (req, res) => {
 		try {
-			const { username, email } = req.body.user;
+			const token = await jwt.sign(
+				{ id: req.user.id },
+				process.env.JWT_SECRET,
+			);
+
+			const { username, email } = req.user;
+
 			res.status(200).json({
 				message: `success`,
 				user: {
 					username,
 					email,
+					token,
 				},
 			});
 		} catch (error) {
