@@ -9,7 +9,7 @@ module.exports = {
 	 * @returns {UserResponse.model} 201 - The created model.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	registerUser: async (req, res) => {
+	registerUser: async function (req, res) {
 		try {
 			const { username, email } = await User.create(req.body);
 			res.status(201).json({
@@ -37,7 +37,7 @@ module.exports = {
 	 * @returns {AuthenticatedUserResponse.model} 200 - The authenticated user model.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	loginUser: async (req, res) => {
+	loginUser: async function (req, res) {
 		try {
 			if (req.user?.token == null) {
 				req.user.token = jwt.sign(
@@ -71,7 +71,7 @@ module.exports = {
 	 * @returns {UserResponse.model} 200 - The updated model.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	updateUser: async (req, res) => {
+	updateUser: async function (req, res) {
 		try {
 			const user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
@@ -99,7 +99,7 @@ module.exports = {
 	 * @returns {UserResponse.model} 200 - The updated user response object.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	patchUser: async (req, res) => {
+	patchUser: async function (req, res) {
 		try {
 			const user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
@@ -122,7 +122,7 @@ module.exports = {
 	 * @returns {Void} 204 - No Content.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	deleteUser: async (req, res) => {
+	deleteUser: async function (req, res) {
 		try {
 			let user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
@@ -142,7 +142,7 @@ module.exports = {
 	 * @returns {Void} 204 - No Content.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	deleteAllUsers: async (_, res) => {
+	deleteAllUsers: async function (_, res) {
 		try {
 			await User.destroy({ truncate: true });
 			res.status(204).end();
