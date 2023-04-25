@@ -33,7 +33,7 @@ module.exports = async (req, res, next) => {
 		}
 
 		// Attach the user object to the request and call the controller.
-		req.body.user = user;
+		req.user = user;
 		next();
 	} catch (error) {
 		res.status(500).json({
