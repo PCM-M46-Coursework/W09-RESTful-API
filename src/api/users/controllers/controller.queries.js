@@ -9,7 +9,7 @@ module.exports = {
 	 * @returns {object} 200 - A JSON object with all users.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	getAllUsers: async (_, res) => {
+	getAllUsers: async function (_, res) {
 		try {
 			const users = await User.findAll();
 			res.status(200).json({ message: "OK", data: users });
@@ -29,7 +29,7 @@ module.exports = {
 	 * @returns {object} 200 - A JSON object with the requested user.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	getUserById: async (req, res) => {
+	getUserById: async function (req, res) {
 		try {
 			const user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
@@ -51,7 +51,7 @@ module.exports = {
 	 * @returns {AuthenticatedUserResponse.model} 200 - The authenticated user model.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	authCheck: async (req, res) => {
+	authCheck: async function (req, res) {
 		try {
 			const { username, email, token } = req.user;
 			res.status(200).json({
