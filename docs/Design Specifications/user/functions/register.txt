@@ -1,0 +1,41 @@
+
+register
+
+Recieves from:
+    hashPass
+
+Purpose: take user data and create user on db, assigns token, returning user data
+
+Data: 
+    req:
+        type: object 
+        properties:
+            body:
+                type: object
+                properties
+                    username: string
+                    password: string (hashed)
+
+Responses:
+    status: 201
+        type: object
+        name: successResponse
+        properties:
+            message:
+                type: string
+                text: "success"
+            user:
+                type: object
+                properties:
+                    username: string
+                    token: string
+
+    status: 501
+        type: object
+        name: errorResponse
+        properties:
+            message: "error"
+            error: the error
+
+            
+

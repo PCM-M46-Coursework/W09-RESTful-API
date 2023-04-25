@@ -1,0 +1,80 @@
+login
+
+Recieves from:
+    comparePass
+    tokenCheck
+
+Purpose:  login user
+
+    if token/cookie present, 
+        
+        recieve data from tokenCheck
+
+        return activeTodos and doneTodos
+
+    else if token/cookie not present, sign token and return token, activeTodos and doneTodos
+
+        recieve data from comparePass
+
+        return activeTodos and doneTodos
+
+Data: 
+
+    from comparePass
+
+    req:
+        type: object 
+        properties:
+            user:
+                type: object
+                properties
+                    id: number
+                    username: string
+                    password: string (hashed)
+
+
+    from tokenCheck
+
+    req:
+    type: object 
+        properties:
+            authCheck:
+                type: object
+                properties
+                    id: number
+                    username: string
+                    password: string (hashed)
+
+Responses:
+
+    status: 201
+        type: object
+        properties:
+            message:
+                type: string
+                text: "success"
+            user:
+                type: object
+                properties:
+                    username: string
+                    token: string
+            activeTodos:
+                type: array
+                elements:
+                    type: object
+                    properties:
+                        id: number
+                        todo: string (todo text, example: "buy milk")
+            doneTodos:
+                type: array
+                elements:
+                    type: object
+                    properties:
+                        id: number
+                        todo: string (todo text, example: "walk dog")
+
+    status: 501
+        type: object
+        properties:
+            message: "error"
+            error: the error

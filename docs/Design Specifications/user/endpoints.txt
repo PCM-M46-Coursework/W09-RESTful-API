@@ -1,0 +1,9 @@
+
+Users
+
+POST - /users/register - register user, no cookie present - logs in user
+POST - /users/login - login in user, no cookie present, fetches activeTodos and doneTodos
+GET - /users/authcheck - login user on render, cookie present, fetches activeTodos, doneTodos
+
+
+

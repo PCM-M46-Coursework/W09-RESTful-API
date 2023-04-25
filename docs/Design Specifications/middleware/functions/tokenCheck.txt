@@ -1,0 +1,39 @@
+tokenCheck
+
+Purpose: take user data including token and verifies token
+
+Data: 
+    type: object
+    properties:
+        token: string
+
+Returns:
+    object:
+    name: req (the whole request body)
+    properties:
+        authCheck:
+            type: object
+            properties:
+                id: number
+                username: string
+                password: string (hashed)
+
+
+Next function: multiple
+
+Responses:
+
+    status: 401 
+        type: object
+        name: not authorized
+        properties:
+            message:
+                type: string
+                text: "user not authorized"
+
+    status: 501
+        type: object
+        name: errorResponse
+        properties:
+            message: "failure"
+            error: the error

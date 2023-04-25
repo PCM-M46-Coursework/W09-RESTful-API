@@ -1,0 +1,42 @@
+
+hashPass
+
+Purpose: take user data on register and hashes password 
+
+Data: 
+    req:
+        type: object
+        properties:
+            body:
+            type: object
+            properties:
+                username: string
+                password: string
+
+Returns:
+    req:
+        type: object
+        properties:
+            body:
+                type: object
+                properties:
+                    username: string
+                    password: string (hashed)
+
+Next function: register
+
+Responses:
+
+    status: 401 - not authorized
+        type: object
+        properties:
+            message:
+                type: string
+                text: "user not authorized - passwords do not match"
+
+    status: 501 - error response
+        type: object
+        properties:
+            message: "failure"
+            error: the error
+    

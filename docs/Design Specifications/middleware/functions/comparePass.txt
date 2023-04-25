@@ -1,0 +1,30 @@
+comparePass
+
+Purpose: take user data on login without token/cookie and compare plain text password without
+         hashed password
+
+Data: 
+    type: object
+    properties:
+        username: string
+        password: string
+
+Returns:
+    object:
+    name: req (the whole request body)
+    properties:
+        user:
+            type: object
+            properties:
+                username: string
+                password: string (hashed)
+
+Next function: login
+
+Responses:
+    status: 501
+        type: object
+        name: errorResponse
+        properties:
+            message: "failure"
+            error: the error
