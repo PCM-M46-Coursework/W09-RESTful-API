@@ -30,6 +30,7 @@ module.exports = {
 	/**
 	 * Authenticates a user, with the provided credentials.
 	 * Authentication handled by {@link comparePass} middleware.
+	 * Authorisation handled by {@link tokenCheck} middleware.
 	 *
 	 * @param {User.model} req.body.required - The user credentials.
 	 * @param {Object} res.body.required - The response object.
