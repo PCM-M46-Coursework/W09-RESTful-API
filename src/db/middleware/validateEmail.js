@@ -1,4 +1,4 @@
-const isValid = require("../../api/users/validators/emailValidator");
+const isValid = require("../validators/emailValidator");
 
 module.exports = async (req, res, next) => {
 	const email = req.body.email;

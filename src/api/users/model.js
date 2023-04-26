@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { context } = require("../../db/connection");
-const validateHash = require("./validators/hashValidator");
-const validateEmail = require("./validators/emailValidator");
+const validateHash = require("../../db/validators/hashValidator");
+const validateEmail = require("../../db/validators/emailValidator");
 
 /**
  * Defines schema for a record, within the Users table, in the database.

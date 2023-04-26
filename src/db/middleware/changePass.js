@@ -1,4 +1,4 @@
-const isValid = require("../../api/users/validators/passwordValidator");
+const isValid = require("../validators/passwordValidator");
 const { hash } = require("../../cryptography/passwordHasher");
 const debug = require("../../diagnostics/debug");
 
