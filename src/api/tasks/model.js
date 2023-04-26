@@ -14,7 +14,10 @@ const Task = context.define("Task", {
 	},
 	description: {
 		type: DataTypes.STRING,
-		allowNull: true,
+		allowNull: {
+			args: false,
+			msg: "Description is a required field.",
+		},
 	},
 	priority: {
 		type: DataTypes.INTEGER,
@@ -26,7 +29,6 @@ const Task = context.define("Task", {
 	},
 	completed: {
 		type: DataTypes.BOOLEAN,
-		defaultValue: false,
 		allowNull: {
 			args: false,
 			msg: "Completed is a required field.",
