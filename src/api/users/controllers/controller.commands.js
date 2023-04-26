@@ -1,3 +1,4 @@
+const { validateModel } = require("../../../db/validators/modelValidator");
 const User = require("../model");
 const jwt = require("jsonwebtoken");
 
@@ -76,12 +77,15 @@ module.exports = {
 			const user = await User.findByPk(req.params.id);
 			if (!user) throw new Error("User not found.");
 
-			const updatedUser = new User(req.body);
-			const validationError = await updatedUser.validate();
-			if (validationError.errors) throw validationError;
+			// Validate the updated data.
+			var validationError = validateModel(User, req.body);
+			if (validationError.length > 0) {
+				return res.status(422).json(validationError);
+			}
 
-			user.set(req.body);
-			await user.save();
+			// Update the user with the new data.
+			task.set(req.body);
+			await task.save();
 			res.status(200).json({ data: user });
 		} catch (error) {
 			res.status(500).json({

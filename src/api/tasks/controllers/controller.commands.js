@@ -1,3 +1,4 @@
+const { validateModel } = require("../../../db/validators/modelValidator");
 const Task = require("../model");
 
 module.exports = {
@@ -34,20 +35,27 @@ module.exports = {
 	 */
 	updateTask: async function (req, res) {
 		try {
+			// Find the existing task.
 			const task = await Task.findByPk(req.params.id);
 			if (!task) throw new Error("Task not found.");
+
+			// Ensure task ownership.
+			req.body.user_id = req.user.id;
 			if (task.user_id != req.user.id) {
 				return res.status(401).json({ message: "Unauthorised" });
 			}
 
-			req.body.user_id = req.user.id;
-			const updatedTask = new Task(req.body);
-			const validationError = await updatedTask.validate();
-			if (validationError.errors) throw validationError;
+			// Validate the updated data.
+			var validationError = validateModel(Task, req.body);
+			if (validationError.length > 0) {
+				return res.status(422).json(validationError);
+			}
 
+			// Update the task with the new data.
 			task.set(req.body);
 			await task.save();
-			res.status(200).json({ data: task });
+
+			res.status(200).json({ message: "success", data: task });
 		} catch (error) {
 			res.status(500).json({
 				message: error.message,
