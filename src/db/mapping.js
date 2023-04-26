@@ -1,5 +1,5 @@
-const User = require("../api/users/model");
-const Task = require("../api/tasks/model");
+const User = require("./models/User");
+const Task = require("./models/Task");
 
 module.exports = {
 	/**

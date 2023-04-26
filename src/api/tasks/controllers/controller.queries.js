@@ -1,4 +1,4 @@
-const Task = require("../model");
+const Task = require("../../../db/models/Task");
 
 module.exports = {
 	/**

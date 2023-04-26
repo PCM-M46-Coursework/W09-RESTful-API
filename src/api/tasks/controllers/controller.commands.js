@@ -1,5 +1,5 @@
 const { isValidModel } = require("../../../core/validators/modelValidator");
-const Task = require("../model");
+const Task = require("../../../db/models/Task");
 
 module.exports = {
 	/**

@@ -1,5 +1,5 @@
 const { isValidModel } = require("../../../core/validators/modelValidator");
-const User = require("../model");
+const User = require("../../../db/models/User");
 const jwt = require("jsonwebtoken");
 
 module.exports = {

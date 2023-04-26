@@ -1,4 +1,4 @@
-const User = require("../../api/users/model");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const debug = require("../../core/diagnostics/debug");
 

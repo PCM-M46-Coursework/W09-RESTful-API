@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { context } = require("../../db/connection");
+const { context } = require("../connection");
 const { isValidHash } = require("../../core/validators/hashValidator");
 const isValidEmail = require("../../core/validators/emailValidator");
 

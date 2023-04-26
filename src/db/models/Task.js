@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const { context } = require("../../db/connection");
+const { context } = require("../connection");
 
 /**
  * Defines schema for a record, within the Tasks table, in the database.
