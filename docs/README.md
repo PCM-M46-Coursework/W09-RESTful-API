@@ -32,14 +32,14 @@ Create a full REST API with a database layer, user authentication, JWT authorisa
 | Authorise a user, with the provided token. | GET | /users/authcheck | tokenCheck | authoriseUser |
 
 ### Stretch Goals:
- - [ ] Create a second model for data storage, must be in some way linked to the user database entries.
-    - [ ] POST a new task for the authenticated user.
-    - [ ] UPDATE (PUT) a specific task for the authenticated user.
-    - [ ] UPDATE (PATCH) a specific task for the authenticated user.
-    - [ ] DELETE a specific task for the authenticated user.
-    - [ ] DELETE all tasks for the authenticated user.
-    - [ ] GET all tasks for the authenticated user.
-    - [ ] GET a specific task for the authenticated user.
+ - [x] Create a second model for data storage, must be in some way linked to the user database entries.
+    - [x] POST a new task for the authenticated user.
+    - [x] UPDATE (PUT) a specific task for the authenticated user.
+    - [x] UPDATE (PATCH) a specific task for the authenticated user.
+    - [x] DELETE a specific task for the authenticated user.
+    - [x] DELETE all tasks for the authenticated user.
+    - [x] GET all tasks for the authenticated user.
+    - [x] GET a specific task for the authenticated user.
 
 ### Personal Stretch Goals:
  - [x] Implement a route for authenticated, and authorised users to change their passwords.
