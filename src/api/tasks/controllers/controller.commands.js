@@ -1,4 +1,4 @@
-const { validateModel } = require("../../../db/validators/modelValidator");
+const { isValidModel } = require("../../../db/validators/modelValidator");
 const Task = require("../model");
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 			}
 
 			// Validate the updated data.
-			var validationError = validateModel(Task, req.body);
+			var validationError = isValidModel(Task, req.body);
 			if (validationError.length > 0) {
 				return res.status(422).json(validationError);
 			}

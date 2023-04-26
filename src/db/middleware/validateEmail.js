@@ -1,11 +1,11 @@
-const isValid = require("../validators/emailValidator");
+const { isValidEmail } = require("../validators/emailValidator");
 
 module.exports = async (req, res, next) => {
 	const email = req.body.email;
 	if (!email) {
 		return res.status(422).json({ message: "Email address is required." });
 	}
-	if (!isValid(email)) {
+	if (!isValidEmail(email)) {
 		return res.status(422).json({ message: "Invalid email address." });
 	}
 	next();

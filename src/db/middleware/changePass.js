@@ -1,4 +1,4 @@
-const isValid = require("../validators/passwordValidator");
+const { isValidPassword } = require("../validators/passwordValidator");
 const { hash } = require("../../cryptography/passwordHasher");
 const debug = require("../../diagnostics/debug");
 
@@ -33,7 +33,7 @@ const debug = require("../../diagnostics/debug");
     Within the scope of this project, we have no way to invalidate redundant tokens.
  */
 
-module.exports = async (req, res, next) => {
+module.exports = async function (req, res, next) {
 	debug.traceRoute(req, "Entering changePass Middleware");
 	const { password, newPassword } = req.body;
 
@@ -46,7 +46,7 @@ module.exports = async (req, res, next) => {
 
 	try {
 		// 1. Validate the new password.
-		if (!isValid(newPassword))
+		if (!isValidPassword(newPassword))
 			return res.status(422).json({
 				message:
 					"The new password does not meet the minimum password strength rules.",

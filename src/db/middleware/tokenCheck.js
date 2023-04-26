@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../api/users/model");
 const debug = require("../../diagnostics/debug");
 
-module.exports = async (req, res, next) => {
+module.exports = async function (req, res, next) {
 	try {
 		debug.traceRoute(req, "Entering tokenCheck Middleware");
 
