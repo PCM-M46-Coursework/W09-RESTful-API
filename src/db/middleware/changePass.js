@@ -1,5 +1,5 @@
 const { isValidPassword } = require("../validators/passwordValidator");
-const { hash } = require("../../cryptography/passwordHasher");
+const { hash } = require("../../core/cryptography/passwordHasher");
 const debug = require("../../core/diagnostics/debug");
 
 /** THEORYCRAFT:

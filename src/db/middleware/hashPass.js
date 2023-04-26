@@ -1,4 +1,4 @@
-const { hash } = require("../../cryptography/passwordHasher");
+const { hash } = require("../../core/cryptography/passwordHasher");
 const debug = require("../../core/diagnostics/debug");
 
 module.exports = async function (req, res, next) {
