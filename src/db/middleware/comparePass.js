@@ -1,8 +1,8 @@
 const User = require("../../api/users/model");
 const bcrypt = require("bcrypt");
-const debug = require("../../diagnostics/debug");
+const debug = require("../../core/diagnostics/debug");
 
-module.exports = async (req, res, next) => {
+module.exports = async function (req, res, next) {
 	debug.traceRoute(req, "Entering comparePass Middleware");
 
 	// Early return if user is already authenticated, and authorised, via JSON web token.

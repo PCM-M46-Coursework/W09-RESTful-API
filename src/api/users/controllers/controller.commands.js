@@ -1,4 +1,4 @@
-const { validateModel } = require("../../../db/validators/modelValidator");
+const { isValidModel } = require("../../../core/validators/modelValidator");
 const User = require("../model");
 const jwt = require("jsonwebtoken");
 
@@ -78,7 +78,7 @@ module.exports = {
 			if (!user) throw new Error("User not found.");
 
 			// Validate the updated data.
-			var validationError = validateModel(User, req.body);
+			var validationError = isValidModel(User, req.body);
 			if (validationError.length > 0) {
 				return res.status(422).json(validationError);
 			}

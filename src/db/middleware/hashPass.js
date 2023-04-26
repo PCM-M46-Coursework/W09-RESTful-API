@@ -1,7 +1,7 @@
-const { hash } = require("../../cryptography/passwordHasher");
-const debug = require("../../diagnostics/debug");
+const { hash } = require("../../core/cryptography/passwordHasher");
+const debug = require("../../core/diagnostics/debug");
 
-module.exports = async (req, res, next) => {
+module.exports = async function (req, res, next) {
 	try {
 		debug.traceRoute(req, "Entering hashPass Middleware");
 		req.body.password = await hash(req.body.password);

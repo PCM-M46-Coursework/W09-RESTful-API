@@ -1,17 +1,17 @@
-const validateHash = require("../hashValidator");
+const { isValidHash } = require("../hashValidator");
+const saltRounds = 12;
 
-describe("validateHash", () => {
+describe("isValidHash", () => {
 	it("should return true for a valid hash.", () => {
-		const validHash =
-			"$2b$12$V1Ml6K.lJYUETRNs79TRnejWeCjd5Ew3Cr/AluH.xwhaTsnvlck96";
-		expect(validateHash(validHash)).toBe(true);
+		const validHash = `$2b$${saltRounds}$V1Ml6K.lJYUETRNs79TRnejWeCjd5Ew3Cr/AluH.xwhaTsnvlck96`;
+		expect(isValidHash(validHash)).toBe(true);
 	});
 
-	test.each([10, 11, 13])(
+	test.each([saltRounds - 1, saltRounds + 1])(
 		"should return false for a hashes with different amounts of salt rounds.",
 		saltRounds => {
 			const invalidHash = `$2b$${saltRounds}$V1Ml6K.lJYUETRNs79TRnejWeCjd5Ew3Cr/AluH.xwhaTsnvlck96`;
-			expect(validateHash(invalidHash)).toBe(false);
+			expect(isValidHash(invalidHash)).toBe(false);
 		},
 	);
 
@@ -19,7 +19,7 @@ describe("validateHash", () => {
 		"should return false for a hashes with different algorithms.",
 		algorithm => {
 			const invalidHash = `$${algorithm}$12$V1Ml6K.lJYUETRNs79TRnejWeCjd5Ew3Cr/AluH.xwhaTsnvlck96`;
-			expect(validateHash(invalidHash)).toBe(false);
+			expect(isValidHash(invalidHash)).toBe(false);
 		},
 	);
 });
