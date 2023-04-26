@@ -9,7 +9,7 @@ module.exports = {
 	 * @returns {object} 200 - A JSON object with all tasks.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	getAllTasks: async function (_, res) {
+	getAllTasks: async function (req, res) {
 		try {
 			const tasks = await Task.findAll({
 				where: { user_id: req.user.id },

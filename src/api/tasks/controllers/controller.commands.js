@@ -10,8 +10,8 @@ module.exports = {
 	 */
 	createTask: async function (req, res) {
 		try {
+			req.body.user_id = req.user.id;
 			const task = await Task.create(req.body);
-			task.user_id = req.user.id;
 			res.status(201).json({
 				message: "success",
 				task,
@@ -40,6 +40,7 @@ module.exports = {
 				return res.status(401).json({ message: "Unauthorised" });
 			}
 
+			req.body.user_id = req.user.id;
 			const updatedTask = new Task(req.body);
 			const validationError = await updatedTask.validate();
 			if (validationError.errors) throw validationError;
@@ -112,7 +113,7 @@ module.exports = {
 	 * @returns {Void} 204 - No Content.
 	 * @returns {Error} 500 - Internal server error.
 	 */
-	deleteAllTasks: async function (_, res) {
+	deleteAllTasks: async function (req, res) {
 		try {
 			await Task.destroy({
 				where: { user_id: req.user.id },
