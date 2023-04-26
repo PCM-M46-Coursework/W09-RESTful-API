@@ -17,6 +17,7 @@ db.connect().then(() => {
 		.get("/health", (_, res) =>
 			res.status(200).json({ message: "API is up. Status is: Healthy." }),
 		)
+		.use("/tasks", require("./api/tasks/routes"))
 		.use("/users", require("./api/users/routes"))
 		.listen(expressServerPort, () => {
 			console.log(
