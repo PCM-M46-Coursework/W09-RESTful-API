@@ -1,4 +1,4 @@
-const { isValidEmail } = require("../validators/emailValidator");
+const { isValidEmail } = require("../../core/validators/emailValidator");
 
 module.exports = async (req, res, next) => {
 	const email = req.body.email;

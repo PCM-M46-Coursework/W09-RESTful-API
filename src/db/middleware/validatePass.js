@@ -1,4 +1,4 @@
-const { isValidPassword } = require("../validators/passwordValidator");
+const { isValidPassword } = require("../../core/validators/passwordValidator");
 
 module.exports = async (req, res, next) => {
 	const password = req.body.password;

@@ -1,7 +1,7 @@
-const { isValidHash } = require("../../../../db/validators/hashValidator");
-const { isValidEmail } = require("../../../../db/validators/emailValidator");
+const { isValidHash } = require("../hashValidator");
+const { isValidEmail } = require("../emailValidator");
 
-const User = {
+const MockUser = {
 	rawAttributes: {
 		username: {
 			allowNull: {
@@ -52,4 +52,4 @@ const User = {
 	},
 };
 
-module.exports = User;
+module.exports = MockUser;

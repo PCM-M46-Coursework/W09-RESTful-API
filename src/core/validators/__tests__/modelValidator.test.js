@@ -1,4 +1,4 @@
-const User = require("./mocks/MockUserModel");
+const MockUser = require("../__mocks__/MockUser");
 const { isValidModel } = require("../modelValidator");
 
 describe("isValidModel", () => {
@@ -8,7 +8,7 @@ describe("isValidModel", () => {
 			email: "testuser@example.com",
 			password: "password",
 		};
-		const errors = isValidModel(User, body);
+		const errors = isValidModel(MockUser, body);
 		expect(errors).toEqual([]);
 	});
 
@@ -17,7 +17,7 @@ describe("isValidModel", () => {
 			username: "testuser",
 			password: "password",
 		};
-		const errors = isValidModel(User, body);
+		const errors = isValidModel(MockUser, body);
 		expect(errors).toEqual([
 			{
 				key: "email",

@@ -1,4 +1,4 @@
-const { isValidPassword } = require("../validators/passwordValidator");
+const { isValidPassword } = require("../../core/validators/passwordValidator");
 const { hash } = require("../../core/cryptography/passwordHasher");
 const debug = require("../../core/diagnostics/debug");
 

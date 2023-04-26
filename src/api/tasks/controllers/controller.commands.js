@@ -1,4 +1,4 @@
-const { isValidModel } = require("../../../db/validators/modelValidator");
+const { isValidModel } = require("../../../core/validators/modelValidator");
 const Task = require("../model");
 
 module.exports = {
