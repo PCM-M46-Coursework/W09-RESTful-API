@@ -6,8 +6,8 @@ module.exports = {
 	 * Create table structure between DB and ORM.
 	 */
 	synchroniseTables: function () {
-		User.sync({ alter: true });
-		Task.sync({ alter: true });
+		User.sync(/* { alter: true } */);
+		Task.sync(/* { alter: true } */);
 	},
 
 	/**
