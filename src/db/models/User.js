@@ -1,12 +1,11 @@
 const { DataTypes } = require("sequelize");
-const { context } = require("../connection");
 const { isValidHash } = require("../../core/validators/hashValidator");
 const { isValidEmail } = require("../../core/validators/emailValidator");
 
 /**
  * Defines schema for a record, within the Users table, in the database.
  */
-const User = context.define("User", {
+module.exports = {
 	username: {
 		type: DataTypes.STRING,
 		allowNull: {
@@ -56,6 +55,4 @@ const User = context.define("User", {
 			},
 		},
 	},
-});
-
-module.exports = User;
+};

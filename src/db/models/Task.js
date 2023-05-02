@@ -1,10 +1,9 @@
 const { DataTypes } = require("sequelize");
-const { context } = require("../connection");
 
 /**
  * Defines schema for a record, within the Tasks table, in the database.
  */
-const Task = context.define("Task", {
+module.exports = {
 	title: {
 		type: DataTypes.STRING,
 		allowNull: {
@@ -34,6 +33,4 @@ const Task = context.define("Task", {
 			msg: "Completed is a required field.",
 		},
 	},
-});
-
-module.exports = Task;
+};

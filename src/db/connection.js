@@ -2,10 +2,10 @@ const { Sequelize } = require("sequelize");
 
 module.exports = {
 	/**
-	 * The database context, used to define the schema of the database structure, and
+	 * The database object, used to define the schema of the database structure, and
 	 * provides a way to interact with the database, through the entities mapped to it.
 	 */
-	context: new Sequelize(process.env.MYSQL_CONNECTION_STRING),
+	sequelise: new Sequelize(process.env.MYSQL_CONNECTION_STRING),
 
 	/**
 	 * Creates a connection to the remotely hosted database, using the credentials set
@@ -13,7 +13,7 @@ module.exports = {
 	 */
 	connect: async function () {
 		try {
-			await this.context.authenticate();
+			await this.sequelise.authenticate();
 			console.log("DB Connection established.");
 		} catch (error) {
 			console.log(error);
