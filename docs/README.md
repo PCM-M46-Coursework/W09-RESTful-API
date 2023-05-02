@@ -68,4 +68,14 @@ For the stretch goal of this project, I've chosen to implement a Task List. The 
 
 ## Retrospective
 
-TODO:  
+I've used this project to experiment with some of the more advanced principles of programming; namely inversion of control, dependency injection, and mocking. Having written a few unit tests, with Axios, it soon became clear that using a live database with multiple tables is not the best way to test the middleware, or controllers. I needed a way to de-couple the HTTP server from the Database, and de-couple the scaffolding from Sequelize. This led to a line of research into DIP/DI/IOC for JavaScript.
+
+### Dependency Inversion / Injection
+
+The Dependency Inversion Principle is one of the core princples of SOLID. It states that a object should be passed all that it needs to be able to function; rather than reaching out for dependencies from elsewhere. This allows these dependencies to be hot-swapped, without breaking the object that needs to use them. A simple contract is made between the dependency, and the reliant object; that being one or more expected member signatures, from the dependency. Any dependency that contains those signatures, can be used in place of any other similar dependency object. The act of passing a dependency into an object, as a parameter, is dependency injection.
+
+Within this project, I have employed a fairly rustic, brute-force approach to DI; that being, simply wrapping the entire dependent code within a function, and passing in the dependency as a function parameter. This allows us to use the proper live database when running the app with `npm start`, but we inject a mock Sequelize context into the API, when we run `npm test`.
+
+### Mocking the Database
+
+I have used `sequelize-mock` to attempt to mock the models within the database, so that we can perform unit testing without needing to reset the live database for each test. This is something I have only been able to get so far with though. The documentation surrounding `sequelize-mock` isn't great, and doesn't give many examples for the specific use cases I wanted to use it for here. While it has allowed me to write sample end-to-end unit tests for user registration, I still need to work out how to determine which methods have been hit, and determine the status of data within the mock database. There seems to be two approaches to using the library, and I'm using the method that requires a lot more nuanced setup, in order to get it to work. I would like to return to this in future, as it's something that has interested me.

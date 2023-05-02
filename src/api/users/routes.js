@@ -1,45 +1,49 @@
 const { Router } = require("express");
-const { commands, queries } = require("./controllers");
-const middleware = require("../../db/middleware");
-const router = Router();
 
-// ===================================================================================
-//  COMMANDS
-// ===================================================================================
+module.exports = function (context) {
+	const { commands, queries } = require("./controllers").build(context);
+	const middleware = require("../../db/middleware").build(context);
+	const router = Router();
 
-router
-	.post(
-		"/register",
-		middleware.validateEmail,
-		middleware.validatePass,
-		middleware.hashPass,
-		commands.registerUser,
-	)
-	.post(
-		"/login",
-		middleware.tokenCheck,
-		middleware.comparePass,
-		commands.loginUser,
-	)
-	.put("/:id", commands.updateUser)
-	.patch(
-		"/change-password",
-		middleware.comparePass,
-		middleware.tokenCheck,
-		middleware.changePass,
-		commands.changePassword,
-	)
-	.patch("/:id", commands.patchUser)
-	.delete("/", commands.deleteAllUsers)
-	.delete("/:id", commands.deleteUser);
+	// ===================================================================================
+	//  COMMANDS
+	// ===================================================================================
 
-// ===================================================================================
-//  QUERIES
-// ===================================================================================
+	router
+		.post(
+			"/register",
+			middleware.validateUsername,
+			middleware.validateEmail,
+			middleware.validatePass,
+			middleware.hashPass,
+			commands.registerUser,
+		)
+		.post(
+			"/login",
+			middleware.tokenCheck,
+			middleware.comparePass,
+			commands.loginUser,
+		)
+		.put("/:id", commands.updateUser)
+		.patch(
+			"/change-password",
+			middleware.comparePass,
+			middleware.tokenCheck,
+			middleware.changePass,
+			commands.changePassword,
+		)
+		.patch("/:id", commands.patchUser)
+		.delete("/", commands.deleteAllUsers)
+		.delete("/:id", commands.deleteUser);
 
-router
-	.get("/", queries.getAllUsers)
-	.get("/authcheck", middleware.tokenCheck, queries.authCheck)
-	.get("/:id", queries.getUserById);
+	// ===================================================================================
+	//  QUERIES
+	// ===================================================================================
 
-module.exports = router;
+	router
+		.get("/", queries.getAllUsers)
+		.get("/authcheck", middleware.tokenCheck, queries.authCheck)
+		.get("/:id", queries.getUserById);
+
+	return router;
+};
